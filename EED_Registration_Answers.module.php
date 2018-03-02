@@ -59,6 +59,7 @@ class EED_Registration_Answers extends EED_Module
             10,
             2
         );
+        add_filter('FHEE__Events_Admin_Page___event_legend_items__items', array('EED_Registration_Answers', 'additional_legend_items'));
     }
 
 
@@ -74,6 +75,27 @@ class EED_Registration_Answers extends EED_Module
             . ' title="' . esc_attr__('View Answers', 'event_espresso') . '">'
             . '<span class="dashicons dashicons-forms"></span>';
          return $action_links;
+    }
+
+
+
+    /**
+     * Adds a new legend item
+     * @return array
+     */
+    public static function additional_legend_items($items)
+    {
+        if (EE_Registry::instance()->CAP->current_user_can(
+            'ee_read_registrations',
+            'espresso_registration_answers_reports'
+        )
+        ) {
+            $items['answers'] = array(
+                'class' => 'dashicons dashicons-forms',
+                'desc'  => esc_html__('View Answers', 'event_espresso'),
+            );
+        }
+        return $items;
     }
 
 

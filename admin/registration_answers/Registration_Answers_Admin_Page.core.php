@@ -45,7 +45,6 @@ class Registration_Answers_Admin_Page extends EE_Admin_Page
 
     protected function _set_page_routes()
     {
-        $evt_id = isset($this->_req_data['EVT_ID']) ? $this->_req_data['EVT_ID'] : null;
         $this->_page_routes = array(
             'default'         => '_basic_settings',
             'update_settings' => array(
@@ -55,8 +54,7 @@ class Registration_Answers_Admin_Page extends EE_Admin_Page
             'usage'           => '_usage',
             'event_answers'   => array(
                 'func' => 'eventAnswers',
-                'capability' => 'ee_edit_event',
-                'obj_id'     => $evt_id,
+                'capability' => 'ee_read_registrations',
             )
         );
     }
@@ -288,7 +286,7 @@ class Registration_Answers_Admin_Page extends EE_Admin_Page
         //for each question group, gets its questions
         foreach ($question_groups as $question_group) {
 
-            $question_data = array();
+            $questions_data = array();
             $questions = $question_group->questions(
                 array(
                     array(
@@ -357,7 +355,6 @@ class Registration_Answers_Admin_Page extends EE_Admin_Page
         );
         // the final template wrapper
         $this->display_admin_page_with_no_sidebar();
-
     }
 
 
