@@ -1,10 +1,10 @@
-<h1><?php printf( esc_html__('Registration Answers for %1$s', 'event_espresso'), $event->name());?></h1>
+<h1><?php printf( esc_html__('Registration Answers for Event "%1$s"', 'event_espresso'), $event->name());?></h1>
 <div id="event-answers-container">
     <?php foreach( $report_data as $question_group_data) {
         $question_group = $question_group_data['question_group'];
         $questions = $question_group_data['questions'];
         ?>
-        <h2><?php $question_group->e('QSG_name');?></h2>
+        <h2><?php printf('Question Group "%1$s"',$question_group->get('QSG_name'));?></h2>
         <?php foreach($questions as $question_data){
             $question = $question_data['question'];
             $is_enum = $question_data['is_enum'];
@@ -12,7 +12,7 @@
             $option_totals = $question_data['option_totals'];
             $registrations = $question_data['registrations'];
             ?>
-            <h3><?php printf(esc_html__('Question: %1$s', 'event_espresso'), $question->get('QST_display_text'));?></h3>
+            <h3><?php printf(esc_html__('Question "%1$s"', 'event_espresso'), $question->get('QST_display_text'));?></h3>
 
             <?php if ($is_enum) {?>
                 <h4><?php _e('Totals','event_espresso');?></h4>

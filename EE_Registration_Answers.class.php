@@ -97,6 +97,28 @@ Class  EE_Registration_Answers extends EE_Addon {
 
 
 
+    /**
+     * Override parent so the link appears as "usage" only
+     * @param $links
+     * @param $file
+     * @return mixed
+     */
+    public function plugin_action_links($links, $file)
+    {
+        if ($file === $this->plugin_basename() && $this->plugin_action_slug() !== '') {
+            // before other links
+            array_unshift(
+                $links,
+                '<a href="admin.php?page=' . $this->plugin_action_slug() . '">'
+                . esc_html__('Instructions', 'event_espresso')
+                . '</a>'
+            );
+        }
+        return $links;
+    }
+
+
+
 }
 // End of file EE_Registration_Answers.class.php
 // Location: wp-content/plugins/eea-registration-answers/EE_Registration_Answers.class.php

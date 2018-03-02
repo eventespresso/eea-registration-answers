@@ -10,7 +10,11 @@
             ); ?>
             </p>
             <p>
-                <?php esc_html_e('From there, you will see all the answers to custom questions given by registrants.', 'event_espresso');?>
+                <?php printf(
+                    esc_html__('From there, you will see all the answers to custom questions given by registrants. %1$sWatch this demo video%2$s', 'event_espresso'),
+                    '<a href="https://drive.google.com/file/d/1XNGNrMkrt5Y6tdo-4N17JFzom_J3Xkl3/view" target="_blank">',
+                    '</a>'
+                );?>
             </p>
 		</li>
 	</ul>

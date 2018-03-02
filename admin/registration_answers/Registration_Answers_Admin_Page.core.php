@@ -46,12 +46,12 @@ class Registration_Answers_Admin_Page extends EE_Admin_Page
     protected function _set_page_routes()
     {
         $this->_page_routes = array(
-            'default'         => '_basic_settings',
-            'update_settings' => array(
-                'func'     => '_update_settings',
-                'noheader' => true,
-            ),
-            'usage'           => '_usage',
+            // 'default'         => '_basic_settings',
+            // 'update_settings' => array(
+            //     'func'     => '_update_settings',
+            //     'noheader' => true,
+            // ),
+            'default'           => '_usage',
             'event_answers'   => array(
                 'func' => 'eventAnswers',
                 'capability' => 'ee_read_registrations',
@@ -65,15 +65,15 @@ class Registration_Answers_Admin_Page extends EE_Admin_Page
     {
 
         $this->_page_config = array(
-            'default' => array(
-                'nav'           => array(
-                    'label' => __('Settings', 'event_espresso'),
-                    'order' => 10,
-                ),
-                'metaboxes'     => array_merge($this->_default_espresso_metaboxes, array('_publish_post_box')),
-                'require_nonce' => false,
-            ),
-            'usage'   => array(
+            // 'default' => array(
+            //     'nav'           => array(
+            //         'label' => __('Settings', 'event_espresso'),
+            //         'order' => 10,
+            //     ),
+            //     'metaboxes'     => array_merge($this->_default_espresso_metaboxes, array('_publish_post_box')),
+            //     'require_nonce' => false,
+            // ),
+            'default'   => array(
                 'nav'           => array(
                     'label' => __('Registration Answers Usage', 'event_espresso'),
                     'order' => 30,
@@ -307,7 +307,7 @@ class Registration_Answers_Admin_Page extends EE_Admin_Page
                     }
                 } else {
                     $options = null;
-                    $option_totals = null;
+                    $option_totals = array();
                 }
                 $registrations_data = array();
                 foreach ($registrations as $registration) {

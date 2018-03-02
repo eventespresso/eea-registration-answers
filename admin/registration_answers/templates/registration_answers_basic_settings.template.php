@@ -5,6 +5,8 @@
 	<h4>
 		<?php _e('Registration Answers Settings', 'event_espresso'); ?>
 	</h4>
+    <p><?php esc_html__('This add-on is in-progress and there are not yet any settings.', 'event_espresso')?></p>
+    <!--
 	<table class="form-table">
 		<tbody>
 
@@ -20,6 +22,7 @@
 
 		</tbody>
 	</table>
+	-->
 
 </div>
 
