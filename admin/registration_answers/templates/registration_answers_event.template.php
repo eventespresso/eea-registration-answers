@@ -1,11 +1,18 @@
-<h1><?php printf( esc_html__('Registration Answers for Event "%1$s"', 'event_espresso'), $event->name());?></h1>
+<h1><?php $page_title;?></h1>
 <div id="event-answers-container">
     <?php foreach( $report_data as $question_group_data) {
         $question_group = $question_group_data['question_group'];
         $questions = $question_group_data['questions'];
         ?>
         <h2><?php printf('Question Group "%1$s"',$question_group->get('QSG_name'));?></h2>
-        <?php foreach($questions as $question_data){
+        <?php
+        if(empty($questions)){
+            ?>
+            <p><?php esc_html_e('No Custom Questions in this Group', 'event_espresso');?></p>
+            <?php
+        }
+
+        foreach($questions as $question_data){
             $question = $question_data['question'];
             $is_enum = $question_data['is_enum'];
             $options = $question_data['options'];

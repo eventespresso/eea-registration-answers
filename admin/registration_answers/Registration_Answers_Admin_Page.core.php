@@ -52,8 +52,8 @@ class Registration_Answers_Admin_Page extends EE_Admin_Page
             //     'noheader' => true,
             // ),
             'default'           => '_usage',
-            'event_answers'   => array(
-                'func' => 'eventAnswers',
+            'registration_answers'   => array(
+                'func' => 'registrationAnswers',
                 'capability' => 'ee_read_registrations',
             )
         );
@@ -163,7 +163,16 @@ class Registration_Answers_Admin_Page extends EE_Admin_Page
 
     protected function _usage()
     {
-        $this->_template_args['admin_page_content'] = EEH_Template::display_template(EE_REGISTRATION_ANSWERS_ADMIN_TEMPLATE_PATH . 'registration_answers_usage_info.template.php', array(), true);
+        $page_query_args = array(
+            'action'   => 'registration_answers'
+        );
+        $reg_answers_link = EE_Admin_Page::add_query_args_and_nonce($page_query_args, EE_REGISTRATION_ANSWERS_ADMIN_URL);
+        $this->_template_args['admin_page_content'] = EEH_Template::display_template(
+            EE_REGISTRATION_ANSWERS_ADMIN_TEMPLATE_PATH . 'registration_answers_usage_info.template.php',
+                array(
+                    'all_reg_answers_link' => $reg_answers_link
+            ),
+            true);
         $this->display_admin_page_with_no_sidebar();
     }
 
@@ -250,39 +259,38 @@ class Registration_Answers_Admin_Page extends EE_Admin_Page
 
 
 
-    public function eventAnswers()
+    /**
+     * Gets all the answers for the registrations. Possibly filtered by event ID
+     */
+    public function registrationAnswers()
     {
-        $EVT_ID = isset($this->_req_data['EVT_ID']) ? $this->_req_data['EVT_ID'] : null;
-
         $report_data = array();
+        if ( isset($this->_req_data['EVT_ID'])) {
+            $EVT_ID = $this->_req_data['EVT_ID'];
+        } else {
+            $EVT_ID = null;
+        }
+
+        $reg_query_params = array(
+            array(),
+            'force_join' => array('Attendee')
+        );
+        if ($EVT_ID) {
+            $reg_query_params[0]['EVT_ID'] = $this->_req_data['EVT_ID'];
+        }
         //get all registrations
-        $registrations = EEM_Registration::instance()->get_all(
-            array(
-                array(
-                    'EVT_ID' => $EVT_ID,
-                ),
-                'force_join' => array('Attendee')
+        $registrations = EEM_Registration::instance()->get_all($reg_query_params);
+
+        $question_group_query_params = array(
+            array(),
+            'order_by' => array(
+                'QSG_order' => 'ASC'
             )
         );
-        //get all answers by those registrations
-        // $answers_by_regs = EEM_Answer::instance()->get_all(
-        //     array(
-        //         array(
-        //             'Registration.EVT_ID' => $EVT_ID
-        //         )
-        //     )
-        // );
-        //get all question groups for the event
-        $question_groups = EEM_Question_Group::instance()->get_all(
-            array(
-                array(
-                    'Event.EVT_ID' => $EVT_ID,
-                ),
-                'order_by' => array(
-                    'QSG_order' => 'ASC'
-                )
-            )
-        );
+        if ($EVT_ID) {
+            $question_group_query_params[0]['Event.EVT_ID'] = $this->_req_data['EVT_ID'];
+        }
+        $question_groups = EEM_Question_Group::instance()->get_all($question_group_query_params);
         //for each question group, gets its questions
         foreach ($question_groups as $question_group) {
 
@@ -340,16 +348,20 @@ class Registration_Answers_Admin_Page extends EE_Admin_Page
             );
         }
 
-
-
-
         //put into a format usable in a report
         $template_path = EE_REGISTRATION_ANSWERS_ADMIN_TEMPLATE_PATH . 'registration_answers_event.template.php';
+
+        if($EVT_ID) {
+            $event = EEM_Event::instance()->get_one_by_ID($EVT_ID);
+            $page_title = printf( esc_html__('Registration Answers for Event "%1$s"', 'event_espresso'), $event->name());
+        } else {
+            $page_title = esc_html__('All Registration Answers', 'event_espresso');
+        }
         $this->_template_args['admin_page_content'] = EEH_Template::display_template(
             $template_path,
             array(
                 'report_data' => $report_data,
-                'event' => EEM_Event::instance()->get_one_by_ID($EVT_ID)
+                'event' => $page_title
             ),
             true
         );

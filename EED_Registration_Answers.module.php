@@ -67,11 +67,11 @@ class EED_Registration_Answers extends EED_Module
     public static function add_action_to_event_list_table($action_links, EE_Event $event)
     {
         $page_query_args = array(
-            'action'   => 'event_answers',
+            'action'   => 'registration_answers',
             'EVT_ID' => $event->ID(),
         );
-        $event_answers_link = EE_Admin_Page::add_query_args_and_nonce($page_query_args, EE_REGISTRATION_ANSWERS_ADMIN_URL);
-        $action_links[] = '<a href="' . $event_answers_link . '"'
+        $reg_answers_link = EE_Admin_Page::add_query_args_and_nonce($page_query_args, EE_REGISTRATION_ANSWERS_ADMIN_URL);
+        $action_links[] = '<a href="' . $reg_answers_link . '"'
             . ' title="' . esc_attr__('View Answers', 'event_espresso') . '">'
             . '<span class="dashicons dashicons-forms"></span>';
          return $action_links;
