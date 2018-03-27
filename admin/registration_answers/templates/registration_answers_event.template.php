@@ -23,6 +23,7 @@
 
             <?php if ($is_enum) {?>
                 <h4><?php _e('Totals','event_espresso');?></h4>
+                <div id="chart-<?php echo $question->ID()?>" class="g-charts"></div>
                 <table>
                     <thead>
                     <tr>

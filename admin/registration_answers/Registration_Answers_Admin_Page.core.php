@@ -16,6 +16,11 @@
 class Registration_Answers_Admin_Page extends EE_Admin_Page
 {
 
+    /**
+     * Data for the registrations answers reports, set when enqueing scripts, but also used later when rendering the page
+     * @var array
+     */
+    protected $report_data = array();
 
     protected function _init_page_props()
     {
@@ -258,11 +263,48 @@ class Registration_Answers_Admin_Page extends EE_Admin_Page
     }
 
 
+    public function load_scripts_styles_registration_answers()
+    {
+        wp_register_script(
+            'ee-reg-answers-js',
+            EE_REGISTRATION_ANSWERS_ADMIN_ASSETS_URL . 'espresso-_registration_answers_admin.js',
+             array('google-charts'),
+            EE_REGISTRATION_ANSWERS_VERSION,
+            true
+        );
+        wp_enqueue_script('ee-reg-answers-js');
+        $this->setupRegistrationAnswersData();
+        $charts_data = array();
+        foreach($this->report_data as $question_group_data) {
+            foreach($question_group_data['questions'] as $question_data) {
+                if ($question_data['is_enum'] &&  $question_data['question'] instanceof EE_Question) {
+                    $question =  $question_data['question'];
+                    $rows = array();
+                    foreach($question_data['option_totals'] as $key => $value ) {
+                        $rows[] = array($key, $value);
+                    }
+                    $charts_data[] = array(
+                        'question_id' => $question->ID(),
+                        'title' => $question->get('QST_display_text'),
+                        'rows' =>  $rows
+                    );
+                }
+            }
+        }
+        wp_localize_script(
+            'ee-reg-answers-js',
+            'ee_reg_answers_js_data',
+            $charts_data
+        );
+
+    }
+
+
 
     /**
-     * Gets all the answers for the registrations. Possibly filtered by event ID
+     * Based on the incoming request, sets up the registration answers data
      */
-    public function registrationAnswers()
+    protected function setupRegistrationAnswersData()
     {
         $report_data = array();
         if ( isset($this->_req_data['EVT_ID'])) {
@@ -347,6 +389,19 @@ class Registration_Answers_Admin_Page extends EE_Admin_Page
                 'questions' => $questions_data
             );
         }
+        $this->report_data = $report_data;
+    }
+
+    /**
+     * Gets all the answers for the registrations. Possibly filtered by event ID
+     */
+    public function registrationAnswers()
+    {
+        if ( isset($this->_req_data['EVT_ID'])) {
+            $EVT_ID = $this->_req_data['EVT_ID'];
+        } else {
+            $EVT_ID = null;
+        }
 
         //put into a format usable in a report
         $template_path = EE_REGISTRATION_ANSWERS_ADMIN_TEMPLATE_PATH . 'registration_answers_event.template.php';
@@ -360,7 +415,7 @@ class Registration_Answers_Admin_Page extends EE_Admin_Page
         $this->_template_args['admin_page_content'] = EEH_Template::display_template(
             $template_path,
             array(
-                'report_data' => $report_data,
+                'report_data' => $this->report_data,
                 'event' => $page_title
             ),
             true

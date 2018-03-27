@@ -38,7 +38,7 @@
  */
 // define versions and this file
 define( 'EE_REGISTRATION_ANSWERS_CORE_VERSION_REQUIRED', '4.8.0.rc.0000' );
-define( 'EE_REGISTRATION_ANSWERS_VERSION', '1.0.0.dev.000' );
+define( 'EE_REGISTRATION_ANSWERS_VERSION', '1.0.0.dev.001' );
 define( 'EE_REGISTRATION_ANSWERS_PLUGIN_FILE',  __FILE__ );
 
 
