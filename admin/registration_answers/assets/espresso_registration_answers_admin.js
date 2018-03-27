@@ -25,14 +25,8 @@ function espressoAddChart(chart_id,question_title, rows) {
         data.addColumn('number', 'Count');
         data.addRows(rows);
         var options = {
-            legend: {position: 'none'},
-            chart:  {
-                title: question_title,
-            },
-            hAxis:  {
-                minValue: 0,
-            }
+            title: question_title
         };
-        var chart = new google.charts.Bar( document.getElementById( chart_id ) );
-        chart.draw( data, google.charts.Bar.convertOptions( options ) );
+        var chart = new google.visualization.PieChart( document.getElementById( chart_id ) );
+        chart.draw( data, options );
 }
