@@ -1,8 +1,8 @@
 <?php
 /*
-  Plugin Name: Event Espresso - Registration Answers (EE 4.x+)
+  Plugin Name: Event Espresso - Custom Question Reports (EE 4.8+)
   Plugin URI: http://www.eventespresso.com
-  Description: The Event Espresso Registration Answers add-on adds reports that facilitate viewing registrations' answers.
+  Description: The Event Espresso Registration Answers add-on adds reports that facilitate viewing registrations' answers to custom questions.
   Version: 1.0.0.dev.000
   Author: Event Espresso
   Author URI: http://www.eventespresso.com
