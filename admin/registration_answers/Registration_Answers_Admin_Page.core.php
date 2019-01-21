@@ -340,7 +340,10 @@ class Registration_Answers_Admin_Page extends EE_Admin_Page
             $questions = $question_group->questions(
                 array(
                     array(
-                        'QST_system' => ['IS_NULL']
+                        'OR' => [
+                            'QST_system' => ['IS_NULL'],
+                            'QST_system*' => ''
+                        ]
                     )
                 )
             );
