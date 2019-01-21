@@ -72,7 +72,7 @@ class EED_Registration_Answers extends EED_Module
         );
         $reg_answers_link = EE_Admin_Page::add_query_args_and_nonce($page_query_args, EE_REGISTRATION_ANSWERS_ADMIN_URL);
         $action_links[] = '<a href="' . $reg_answers_link . '"'
-            . ' title="' . esc_attr__('View Answers', 'event_espresso') . '">'
+            . ' title="' . esc_attr__('View Custom Questions Report', 'event_espresso') . '">'
             . '<span class="dashicons dashicons-forms"></span>';
          return $action_links;
     }
@@ -92,7 +92,7 @@ class EED_Registration_Answers extends EED_Module
         ) {
             $items['answers'] = array(
                 'class' => 'dashicons dashicons-forms',
-                'desc'  => esc_html__('View Answers', 'event_espresso'),
+                'desc'  => esc_html__('View Custom Questions Report', 'event_espresso'),
             );
         }
         return $items;

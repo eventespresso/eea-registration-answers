@@ -1,4 +1,4 @@
-EE4 Registration Answers Add-on
+EE4 Custom Question Reports Add-on
 =========
 
 [![Latest Release](https://img.shields.io/github/tag/eventespresso/eea-registration-answers.svg?style=flat&label=Latest%20Release)](https://github.com/eventespresso/eea-registration-answers/releases)

@@ -3,7 +3,7 @@
 ?>
 <div class="padding">
 	<h4>
-		<?php _e('Registration Answers Settings', 'event_espresso'); ?>
+		<?php _e('Custom Question Reports Settings', 'event_espresso'); ?>
 	</h4>
     <p><?php esc_html__('This add-on is in-progress and there are not yet any settings.', 'event_espresso')?></p>
     <!--
@@ -11,11 +11,11 @@
 		<tbody>
 
 			<tr>
-				<th><?php _e("Reset Registration Answers Settings?", 'event_espresso');?></th>
+				<th><?php _e("Reset Custom Question Reports Settings?", 'event_espresso');?></th>
 				<td>
-					<?php echo EEH_Form_Fields::select( __('Reset Registration Answers Settings?', 'event_espresso'), 0, $yes_no_values, 'reset_registration_answers', 'reset_registration_answers' ); ?><br/>
+					<?php echo EEH_Form_Fields::select( __('Reset Custom Question Reports Settings?', 'event_espresso'), 0, $yes_no_values, 'reset_registration_answers', 'reset_registration_answers' ); ?><br/>
 					<span class="description">
-						<?php _e('Set to \'Yes\' and then click \'Save\' to confirm reset all basic and advanced Event Espresso Registration Answers settings to their plugin defaults.', 'event_espresso'); ?>
+						<?php _e('Set to \'Yes\' and then click \'Save\' to confirm reset all basic and advanced Event Espresso Custom Question Reports settings to their plugin defaults.', 'event_espresso'); ?>
 					</span>
 				</td>
 			</tr>

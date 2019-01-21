@@ -24,7 +24,7 @@ class Registration_Answers_Admin_Page_Init extends EE_Admin_Page_Init  {
 		do_action( 'AHEE_log', __FILE__, __FUNCTION__, '' );
 
 		define( 'REGISTRATION_ANSWERS_PG_SLUG', 'espresso_registration_answers' );
-		define( 'REGISTRATION_ANSWERS_LABEL', __( 'Registration Answers', 'event_espresso' ));
+		define( 'REGISTRATION_ANSWERS_LABEL', __( 'Custom Question Reports', 'event_espresso' ));
 		define( 'EE_REGISTRATION_ANSWERS_ADMIN_URL', admin_url( 'admin.php?page=' . REGISTRATION_ANSWERS_PG_SLUG ));
 		define( 'EE_REGISTRATION_ANSWERS_ADMIN_ASSETS_PATH', EE_REGISTRATION_ANSWERS_ADMIN . 'assets' . DS );
 		define( 'EE_REGISTRATION_ANSWERS_ADMIN_ASSETS_URL', EE_REGISTRATION_ANSWERS_URL . 'admin' . DS . 'registration_answers' . DS . 'assets' . DS );

@@ -1,7 +1,7 @@
 {
 	"versionFile" : "eea-registration-answers.php",
 	"slug" : "eea-registration-answers",
-	"name" : "Event Espresso 4 Registration Answers",
+	"name" : "Event Espresso 4 Custom Question Reports",
 	"archiveBaseUrl" : "http://build.eventespresso.com/",
 	"archiveBasePath" : "~/www/build/",
     "demoee" : false,

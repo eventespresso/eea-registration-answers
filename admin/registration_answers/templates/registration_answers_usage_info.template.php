@@ -3,10 +3,10 @@
         <?php _e('Directions', 'event_espresso'); ?>
     </h2>
     <h3>
-        <?php _e( 'Registration Answers Per Event', 'event_espresso');?>
+        <?php _e( 'Event Custom Question Reports', 'event_espresso');?>
     </h3>
     <p><?php printf(
-            __('From the WP Dashboard, go to your event list. Under "actions", click on the new %1$s "View Answers" button.', 'event_espresso'),
+            __('From the WP Dashboard, go to your event list. Under "actions", click on the new %1$s "View Custom Questions Report" button.', 'event_espresso'),
         '<span class="dashicons dashicons-forms"></span>'
     ); ?>
     </p>
@@ -18,9 +18,9 @@
         );?>
     </p>
     <h3>
-        <?php _e( 'All Registration Answers', 'event_espresso');?>
+        <?php _e( 'All Custom Question Report', 'event_espresso');?>
     </h3>
-    <a href="<?php echo $all_reg_answers_link;?>" class="button"><?php _e('View All Registration Answers', 'event_espresso');?></a>
+    <a href="<?php echo $all_reg_answers_link;?>" class="button"><?php _e('View All Custom Questions Report', 'event_espresso');?></a>
     <p>
         <?php _e('Note: if you have over 100 registrations, this option probably won\'t work for you.', 'event_espresso'); ?>
     </p>

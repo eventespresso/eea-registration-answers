@@ -2,7 +2,7 @@
 /*
   Plugin Name: Event Espresso - Custom Question Reports (EE 4.8+)
   Plugin URI: http://www.eventespresso.com
-  Description: The Event Espresso Registration Answers add-on adds reports that facilitate viewing registrations' answers to custom questions.
+  Description: The Event Espresso Custom Question Reports add-on adds reports that facilitate viewing registrations' answers to custom questions.
   Version: 1.0.0.dev.000
   Author: Event Espresso
   Author URI: http://www.eventespresso.com
@@ -98,7 +98,7 @@ function espresso_registration_answers_activation_error() {
   deactivate_plugins( plugin_basename( EE_REGISTRATION_ANSWERS_PLUGIN_FILE ) );
   ?>
   <div class="error">
-    <p><?php printf( __( 'Event Espresso Registration Answers could not be activated. Please ensure that Event Espresso version %1$s or higher is running', 'event_espresso' ), EE_REGISTRATION_ANSWERS_CORE_VERSION_REQUIRED ); ?></p>
+    <p><?php printf( __( 'Event Espresso Custom Question Reports could not be activated. Please ensure that Event Espresso version %1$s or higher is running', 'event_espresso' ), EE_REGISTRATION_ANSWERS_CORE_VERSION_REQUIRED ); ?></p>
   </div>
 <?php
 }

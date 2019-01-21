@@ -80,7 +80,7 @@ class Registration_Answers_Admin_Page extends EE_Admin_Page
             // ),
             'default'   => array(
                 'nav'           => array(
-                    'label' => __('Registration Answers Usage', 'event_espresso'),
+                    'label' => __('Custom Question Reports', 'event_espresso'),
                     'order' => 30,
                 ),
                 'require_nonce' => false,
@@ -119,7 +119,7 @@ class Registration_Answers_Admin_Page extends EE_Admin_Page
 
     public function admin_init()
     {
-        EE_Registry::$i18n_js_strings['confirm_reset'] = __('Are you sure you want to reset ALL your Event Espresso Registration Answers Information? This cannot be undone.', 'event_espresso');
+        EE_Registry::$i18n_js_strings['confirm_reset'] = __('Are you sure you want to reset ALL your Event Espresso Custom Question Reports Information? This cannot be undone.', 'event_espresso');
     }
 
 
@@ -408,9 +408,9 @@ class Registration_Answers_Admin_Page extends EE_Admin_Page
 
         if($EVT_ID) {
             $event = EEM_Event::instance()->get_one_by_ID($EVT_ID);
-            $page_title = printf( esc_html__('Registration Answers for Event "%1$s"', 'event_espresso'), $event->name());
+            $page_title = printf( esc_html__('Custom Question Report for Event "%1$s"', 'event_espresso'), $event->name());
         } else {
-            $page_title = esc_html__('All Registration Answers', 'event_espresso');
+            $page_title = esc_html__('Custom Question Reports', 'event_espresso');
         }
         $this->_template_args['admin_page_content'] = EEH_Template::display_template(
             $template_path,
