@@ -1,4 +1,6 @@
-<?php if ( ! defined( 'EVENT_ESPRESSO_VERSION' ) ) {
+<?php
+
+if ( ! defined( 'EVENT_ESPRESSO_VERSION' ) ) {
 	exit();
 }
 // define the plugin directory path and URL
@@ -51,7 +53,7 @@ Class  EE_Registration_Answers extends EE_Addon {
      * that needs to run earlier than when the modules load,
      * then please see the after_registration() method below.
      *
-     * @throws \EE_Error
+     * @throws EE_Error
 	 */
 	public static function register_addon() {
 		// register addon via Plugin API
@@ -99,11 +101,12 @@ Class  EE_Registration_Answers extends EE_Addon {
 
     /**
      * Override parent so the link appears as "usage" only
-     * @param $links
-     * @param $file
+     *
+     * @param array$links
+     * @param string $file
      * @return mixed
      */
-    public function plugin_action_links($links, $file)
+    public function plugin_action_links(array $links, string $file): array
     {
         if ($file === $this->plugin_basename() && $this->plugin_action_slug() !== '') {
             // before other links
